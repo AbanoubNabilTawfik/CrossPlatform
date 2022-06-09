@@ -17,6 +17,11 @@ import { PipesComponent } from './pipes/pipes.component';
 import { SquarePipe } from './square.pipe';
 import { ChildComponent } from './child/child.component';
 import { ParentComponent } from './parent/parent.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import {HttpClientModule} from '@angular/common/http';
+import { DepartmentListComponent } from './department-list/department-list.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +38,17 @@ import { ParentComponent } from './parent/parent.component';
     PipesComponent,
     SquarePipe,
     ChildComponent,
-    ParentComponent
+    ParentComponent,
+    EmployeeListComponent,
+    EmployeeDetailsComponent,
+    DepartmentListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
