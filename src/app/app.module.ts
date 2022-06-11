@@ -22,6 +22,10 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 import {HttpClientModule} from '@angular/common/http';
 import { DepartmentListComponent } from './department-list/department-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
+import { OverviewComponent } from './overview/overview.component';
+import { CobtactInfoComponent } from './cobtact-info/cobtact-info.component';
+import { TdfComponent } from './tdf/tdf.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     EmployeeListComponent,
     EmployeeDetailsComponent,
     DepartmentListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DepartmentDetailsComponent,
+    OverviewComponent,
+    CobtactInfoComponent,
+    TdfComponent
   ],
   imports: [
     BrowserModule,
