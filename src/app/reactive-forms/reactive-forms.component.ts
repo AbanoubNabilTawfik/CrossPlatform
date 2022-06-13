@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ConfirmPasswordValidator } from '../Validations/confirmPassword.validator';
+import { ForbiddenNameValidator } from '../Validations/userName.validator';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -21,15 +23,18 @@ export class ReactiveFormsComponent implements OnInit {
   //     })
   // })
   registerationForm=this.fb.group({
-    userName:[''],
+    userName:['',[Validators.required,Validators.minLength(5),ForbiddenNameValidator(/superAdmin/)]],
     password:[''],
     confirmPassword:[''],
+    email:[''],
+    subscibe:[false],
+    alternativeEmails:this.fb.array([]),
     address:this.fb.group({
        city:[''],
        state:[''],
        postalCode:['']
     })
-})
+},{validator:[ConfirmPasswordValidator]})
 
   ngOnInit(): void {
   }
@@ -57,6 +62,41 @@ export class ReactiveFormsComponent implements OnInit {
       }
 
     })
+  }
+
+  get userName()
+  {
+    return this.registerationForm.get('userName')
+  }
+  get email()
+  {
+    return this.registerationForm.get('email')
+
+  }
+  setEmailValidation()
+  {
+    this.registerationForm.get('subscibe')?.valueChanges.subscribe(checkedValue=>{
+      if(checkedValue)
+      {
+        //set validation
+        this.email?.setValidators(Validators.required)
+      }
+      else
+      {
+        //remove validation
+        this.email?.clearValidators();
+      }
+      this.email?.updateValueAndValidity()
+    })
+  }
+
+  get alternativeEmails()
+  {
+    return this.registerationForm.get('alternativeEmails') as  FormArray;
+  }
+  addEmail()
+  {
+    this.alternativeEmails.push(this.fb.control(''))
   }
 
 }
